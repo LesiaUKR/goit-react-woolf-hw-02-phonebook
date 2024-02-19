@@ -13,8 +13,9 @@ export class App extends Component {
   };
 
   addContact = newContact => {
-    this.state.contacts.filter(contact => contact.name === newContact.name)
-      .length
+    this.state.contacts.filter(
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+    ).length
       ? alert(`${newContact.name}: is already in contacts`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, newContact],
@@ -49,7 +50,7 @@ export class App extends Component {
         <ContactList
           contacts={this.getFilterContacts()}
           onDeleteContact={this.deleteContact}
-        ></ContactList>
+        />
       </Layout>
     );
   }
